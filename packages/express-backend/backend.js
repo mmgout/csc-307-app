@@ -60,8 +60,8 @@ const addUser = (user) => {
 
 app.post("/users", (req, res) => {
   const userToAdd = req.body;
-  addUser(userToAdd);
-  res.send();
+  const p = addUser(userToAdd);
+  res.status(201).send(p);
 });
 
 app.delete("/users/:id", (req, res) => {
