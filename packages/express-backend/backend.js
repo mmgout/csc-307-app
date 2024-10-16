@@ -69,6 +69,7 @@ app.post("/users", (req, res) => {
 app.delete("/users/:id", (req, res) => {
   users["users_list"] = users["users_list"].filter(({ id }) => 
     id != req.params.id);
+  res.status(204).send();
 });
 
 //Get user by name or by name/job

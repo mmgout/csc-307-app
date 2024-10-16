@@ -15,7 +15,19 @@ function MyApp() {
     const updated = characters.filter((character, i) => {
       return i != index;
     });
-    setCharacters(updated);
+    deleteUser(characters[index])
+      .then((res) => {
+        console.log(res.status);
+        if (res.status === 204) {
+          console.log("Successful delete.");
+        } else if (res.status === 404) {
+          console.log("Resource not found.");
+        }
+      })
+      .then(() => setCharacters(updated))
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   function updateList(person) {
@@ -43,6 +55,16 @@ function MyApp() {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(person)
+    });
+    return promise;
+  }
+
+  function deleteUser(person) {
+    const promise = fetch("http://localhost:8000/users/" + person.id, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      },
     });
     return promise;
   }
