@@ -17,7 +17,6 @@ function MyApp() {
     });
     deleteUser(characters[index])
       .then((res) => {
-        console.log(res.status);
         if (res.status === 204) {
           console.log("Successful delete.");
         } else if (res.status === 404) {
