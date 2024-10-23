@@ -12,7 +12,11 @@ const { MONGO_CONNECTION_STRING } = process.env;
 
 mongoose.set("debug", true);
 mongoose
-  .connect(MONGO_CONNECTION_STRING)
+  .connect(MONGO_CONNECTION_STRING, {
+    useNewURLParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => console.log("MongoDB connected successfully"))
   .catch((error) => console.log(error));
 
 const app = express();
