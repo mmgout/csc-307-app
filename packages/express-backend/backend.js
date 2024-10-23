@@ -37,8 +37,9 @@ app.post("/users", (req, res) => {
 });
 
 app.delete("/users/:id", (req, res) => {
-  const id = req.params._id;
-  mongoose.findByIdAndDelete(id);
+  const id = req.params.id;
+  userService.deleteById(id)
+    .then((result) => {});
   res.status(204).send();
 });
 
