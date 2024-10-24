@@ -60,7 +60,7 @@ app.get("/users", (req, res) => {
 
 //Get user by ID
 app.get("/users/:id", (req, res) => {
-  const id = req.params["_id"]; //or req.params._id
+  const id = req.params["id"]; //or req.params.id
   userService.findUserById(id).then((result) => {
     if (result === undefined || result === null) {
       res.status(404).send("Resource not found.");
